@@ -5,23 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PeriyodikTablo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1280" Width="720">
-    <Grid>
+        Title="Periyodik Tablo" Height="800" Width="1280" MinHeight="800" MinWidth="1280" WindowStartupLocation="CenterScreen" >
+
+    <Window.Background>
+        <SolidColorBrush Color="AliceBlue"/>
+    </Window.Background>
+    
+    <Grid x:Name="MainGrid">
+        
         <Grid.RowDefinitions>
-
             <RowDefinition/>
-
             <RowDefinition/>
-
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
-
             <ColumnDefinition/>
-
             <ColumnDefinition/>
-
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
     </Grid>
 </Window>

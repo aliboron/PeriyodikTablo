@@ -1,0 +1,61 @@
+﻿<Window x:Class="PeriyodikTablo.periyodikgrafik"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PeriyodikTablo"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="Element Özellikleri" Height="500" Width="350" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Deactivated="Window_Deactivated">
+
+
+    <Grid x:Name="propGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Ellipse Fill="#FFFB3434" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"/>
+
+        <Rectangle x:Name="rectEl" Opacity="0.3" Panel.ZIndex="1" Width="200" Margin="50,20,50,20" Grid.RowSpan="5" Grid.Row="0"/>
+        <Label FontFamily="Alef" x:Name="elName" Content="Hydrogen" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="1" FontSize="20" FontWeight="Bold" Panel.ZIndex="1" />
+        <Label x:Name="elSymbol" Content="H" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" FontSize="65" Panel.ZIndex="1" />
+        <Label x:Name="elNumber" Content="25" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2" FontSize="30" Panel.ZIndex="1" />
+
+        <Label Content="Category:" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Panel.ZIndex="1" />
+        <Label x:Name="elCategory" Content="Gas" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Margin="90,0,0,0" Panel.ZIndex="1"/>
+        
+        <Label Content="Standart Phase:" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Panel.ZIndex="1" />
+        <Label x:Name="elPhase" Content="Gas" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Margin="140,0,0,0" Panel.ZIndex="1"/>
+
+        <Label Content="Atomic Mass:" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Panel.ZIndex="1" />
+        <Label x:Name="elAtomicMass" Content="Gas" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Margin="125,0,0,0" Panel.ZIndex="1"/>
+
+        <Label Content="Density:" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Panel.ZIndex="1" />
+        <Label x:Name="elDensity" Content="Gas" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Margin="75,0,0,0" Panel.ZIndex="1"/>
+
+        <Label Content="Electronegativity:" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Panel.ZIndex="1" />
+        <Label x:Name="elElectroNeg" Content="Gas" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Margin="160,0,0,0" Panel.ZIndex="1"/>
+
+        <Label Content="Electron Affinity:" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Panel.ZIndex="1" />
+        <Label x:Name="elElectroAff" Content="Gas" Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="20" Margin="150,0,0,0" Panel.ZIndex="1"/>
+
+        <Label Content="Discovered By:" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="15" Panel.ZIndex="1" />
+        <Label x:Name="elFounder" Content="Gas" Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="15" Margin="100,0,0,0" Panel.ZIndex="1"/>
+
+        <Label Content="El. Config. Semantic:" Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="15" Panel.ZIndex="1" />
+        <Label x:Name="elElectroConfigSemantic" Content="Gas" Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.RowSpan="1" FontSize="18" Margin="140,0,0,0" Panel.ZIndex="1"/>
+
+    </Grid>
+</Window>
