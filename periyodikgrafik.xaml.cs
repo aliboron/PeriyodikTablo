@@ -17,13 +17,13 @@ namespace PeriyodikTablo
     /// <summary>
     /// Interaction logic for periyodikgrafik.xaml
     /// </summary>
-    public partial class periyodikgrafik : Window
+    public partial class Periyodikgrafik : Window
     {
-        Element cloneElement = new Element();
+        Element cloneElement = new();
 
         bool getClose = false;
 
-        public periyodikgrafik()
+        public Periyodikgrafik()
         {
             InitializeComponent();
         }
@@ -34,9 +34,9 @@ namespace PeriyodikTablo
             //------------------------------------------------------------//
             //                  ANIMATION CODES                          //
 
-            cloneElement = MainWindow.ElementList[MainWindow.SendInd];
+            cloneElement = MainWindow.ElementList[MainWindow.sendInd];
 
-            Brush brush = MainWindow.colorForCategory(cloneElement.Category);
+            Brush brush = PeriodicCreators.ColorForCategory(cloneElement.Category);
 
             elNumber.Foreground = brush;
             elNumber.Content = cloneElement.Number.ToString();
@@ -59,13 +59,13 @@ namespace PeriyodikTablo
 
             for (int i = 5; i < 13; i +=2)
             {
-                Border borderBG = new Border();
+                Border borderBG = new();
                 borderBG.Background = brush;
                 Grid.SetRow(borderBG, i);
                 borderBG.Opacity = 0.3;
                 propGrid.Children.Add(borderBG);
 
-                Border borderBG2 = new Border();
+                Border borderBG2 = new();
                 borderBG2.Background = brush;
                 Grid.SetRow(borderBG2, i + 1);
                 borderBG2.Opacity = 0.6;

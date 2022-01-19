@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PeriyodikTablo"
         mc:Ignorable="d"
-        Title="Periyodik Tablo" Height="800" Width="1280" MinHeight="800" MinWidth="1280" WindowStartupLocation="CenterScreen" >
+        Title="Periyodik Tablo" Height="800" Width="1280" MinHeight="800" MinWidth="1280" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
 
     <Window.Background>
         <SolidColorBrush Color="AliceBlue"/>
@@ -49,5 +49,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Grid.Row="0" Click="Button_Click" Content="EN" Margin="3" BorderThickness="0" Background="BurlyWood"/>
     </Grid>
 </Window>

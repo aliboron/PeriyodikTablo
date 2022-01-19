@@ -21,9 +21,14 @@ namespace PeriyodikTablo
     public partial class MainWindow : Window
     {
 
-        public static int SendInd;
+        public static int sendInd { get; set; }
+        int crMethodSwitch = 1;
 
         public static List<Element> ElementList;
+        List<Element> sortedByElectroNegativity;
+
+        decimal x;
+
 
         public MainWindow()
         {
@@ -31,83 +36,67 @@ namespace PeriyodikTablo
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            Element ElementInfo = new Element();
+            Element ElementInfo = new();
             
 
             using (var reader = new StreamReader(path + "dataDir\\data.csv"))
-            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            using (var csv = new CsvReader(reader, new CultureInfo("en-GB")))
             {
                 csv.Context.RegisterClassMap<ElementClassMap>();
                 ElementList = csv.GetRecords<Element>().ToList();
             }
 
+            /*sortedByElectroNegativity = ElementList.OrderBy(x => Double.Parse(x.ElectronegativityPauling)).ToList();
+            sortedByElectroNegativity.Reverse();*/
 
-            for (int i = 0; i < ElementList.Count; i++)
-            {
-                Button btn = new Button();
-
-                Grid.SetColumn(btn, ElementList[i].Xpos);
-                Grid.SetRow(btn, ElementList[i].Ypos);
-
-                btn.Margin = new Thickness(0.5);
-                btn.BorderThickness = new Thickness(0);
-                btn.FontWeight = FontWeights.Bold;
-
-
-                BrushConverter bc = new BrushConverter();
-                btn.Background = colorForCategory(ElementList[i].Category);
-                btn.FontFamily = new FontFamily("Miriam");
-                btn.Content = ElementList[i].Symbol;
-                btn.Tag = i;
-
-                btn.Click += ElBtnClick;
-
-                MainGrid.Children.Add(btn);
-
-                
-            }
-
+            PeriodicCreators.CreateByElectroNeg(ElementList, MainGrid);
 
         }
 
-        private void ElBtnClick(object sender, RoutedEventArgs e)
+        public static void ElBtnClick(object sender, RoutedEventArgs e)
         {
             Button btn = (Button)sender;
 
-            periyodikgrafik pg = new periyodikgrafik();
-            SendInd = int.Parse(btn.Tag.ToString());
+            Periyodikgrafik pg = new();
+            sendInd = int.Parse(btn.Tag.ToString());
             pg.Show();
         }
 
-        public static Brush colorForCategory(string category)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            switch (category)
-            {
-                case "actinide":
-                    return Brushes.Crimson;
-                case "alkali metal":
-                    return Brushes.Green;
-                case "alkaline earth metal":
-                    return Brushes.ForestGreen;
-                case "diatomic nonmetal":
-                    return Brushes.MediumSeaGreen;
-                case "lanthanide":
-                    return Brushes.Tomato;
-                case "metalloid":
-                    return Brushes.Silver;
-                case "noble gas":
-                    return Brushes.MediumPurple;
-                case "polyatomic nonmetal":
-                    return Brushes.DarkOliveGreen;
-                case "post-transition metal":
-                    return Brushes.DarkGray;
-                case "transition metal":
-                    return Brushes.DarkSlateGray;
-                default:
-                    return Brushes.Gray;
-            };
+            //MainGrid.Children.Remove(PeriodicCreators.buttons[1]);
         }
+
+        public void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+
+            Button button = new();
+            button.Click += Button_Click;
+            Grid.SetColumn(button, 0);
+            Grid.SetRow(button, 0);
+            button.Background = Brushes.BurlyWood;
+            button.Margin = new Thickness(3);
+            button.BorderThickness = new Thickness(0);
+
+            MainGrid.Children.Add(button);
+
+            switch (crMethodSwitch)
+            {
+                case 0:
+                    PeriodicCreators.CreateByElectroNeg(ElementList, MainGrid);
+                    crMethodSwitch = 1;
+                    button.Content = "EN";
+                    break;
+                case 1:
+                    PeriodicCreators.CreateByCategory(ElementList, MainGrid);
+                    crMethodSwitch = 0;
+                    button.Content = "Category";
+                    break;
+
+            }
+        }
+
     }
 
 }

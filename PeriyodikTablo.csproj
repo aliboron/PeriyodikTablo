@@ -9,11 +9,20 @@
     <Authors>Muhammed Buhari Horoz</Authors>
     <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+    <Page Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\Roboto.ttf" />
     <None Remove="Resources\BG.jpg" />
-    <None Include="bin\Debug\net5.0-windows\icon.png">
+    <None Include="Resources\icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
@@ -24,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fonts\Roboto.ttf" />
     <Resource Include="Resources\BG.jpg" />
   </ItemGroup>
 
