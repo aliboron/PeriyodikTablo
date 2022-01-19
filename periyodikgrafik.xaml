@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PeriyodikTablo"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="Element Özellikleri" Height="500" Width="350" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Deactivated="Window_Deactivated" ShowInTaskbar="False">
+        Title="Element Özellikleri" Height="500" Width="350" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" ShowInTaskbar="False" MouseDown="Window_MouseDown">
 
 
     <Grid x:Name="propGrid">
@@ -25,10 +25,13 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Ellipse Fill="#FFFB3434" Width="25" Height="25" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="3" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"/>
 
-        <Rectangle x:Name="rectEl" Opacity="0.3" Panel.ZIndex="1" Width="200" Margin="50,20,50,20" Grid.RowSpan="5" Grid.Row="0"/>
+        <Border Grid.Row="0" Background="#26dc9b"/>
+
+        <Image Source="Resources\wiki.png" Grid.Row="0" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,45,0" Panel.ZIndex="2" MouseDown="OpenWiki" MouseEnter="Image_MouseEnter" MouseLeave="Image_MouseLeave"/>
+        <Ellipse Fill="#FFFB3434" Width="25" Height="25" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,10,0"  MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave" Panel.ZIndex="1"/>
+
+        <Rectangle x:Name="rectEl" Opacity="0.3" Panel.ZIndex="1" Width="200" Margin="50,0,50,0" Grid.RowSpan="4" Grid.Row="1"/>
         <Label x:Name="elName" Content="Hydrogen" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="1" FontSize="20" FontWeight="Bold" FontFamily="Fonts\Roboto.ttf" Panel.ZIndex="1" />
         <Label x:Name="elSymbol" Content="H" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" FontSize="65" FontFamily="Fonts\Roboto.ttf" Panel.ZIndex="1" />
         <Label x:Name="elNumber" Content="25" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="2" FontSize="30" FontFamily="Fonts\Roboto.ttf" Panel.ZIndex="1" />

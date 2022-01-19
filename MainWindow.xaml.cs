@@ -20,6 +20,7 @@ namespace PeriyodikTablo
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool isPropActive = false;
 
         public static int sendInd { get; set; }
         int crMethodSwitch = 1;
@@ -59,7 +60,7 @@ namespace PeriyodikTablo
 
             Periyodikgrafik pg = new();
             sendInd = int.Parse(btn.Tag.ToString());
-            pg.Show();
+            pg.ShowDialog();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

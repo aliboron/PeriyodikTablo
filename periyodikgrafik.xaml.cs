@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
@@ -20,8 +21,6 @@ namespace PeriyodikTablo
     public partial class Periyodikgrafik : Window
     {
         Element cloneElement = new();
-
-        bool getClose = false;
 
         public Periyodikgrafik()
         {
@@ -84,7 +83,6 @@ namespace PeriyodikTablo
 
         private void Ellipse_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            getClose = true;
             this.Close();
         }
 
@@ -102,11 +100,27 @@ namespace PeriyodikTablo
             ellipse.Opacity = 1;
         }
 
-        private void Window_Deactivated(object sender, EventArgs e)
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if (getClose)
-                return;
-            else this.Close();
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void OpenWiki(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("explorer", cloneElement.Source);
+        }
+
+        private void Image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Image img = (Image)sender;
+            img.Opacity = 0.7;
+        }
+
+        private void Image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Image img = (Image)sender;
+            img.Opacity = 1;
         }
     }
 }
