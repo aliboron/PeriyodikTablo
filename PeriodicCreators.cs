@@ -49,7 +49,6 @@ namespace PeriyodikTablo
                 btn.HorizontalContentAlignment = HorizontalAlignment.Center;
                 btn.VerticalContentAlignment = VerticalAlignment.Center;
                 btn.Tag = i;
-                btn.Name = elements[i].Name;
 
                 btn.Click += MainWindow.ElBtnClick;
 
