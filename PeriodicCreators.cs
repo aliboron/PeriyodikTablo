@@ -10,6 +10,7 @@ namespace PeriyodikTablo
 {
     class PeriodicCreators
     {
+        public static List<Button>btnNonMetal;
 
         public static void CreateByElectroNeg(List<Element> elements, Grid grid)
         {
@@ -30,15 +31,17 @@ namespace PeriyodikTablo
 
                 decimal elNeg = ConvertWithFraction(elements[i].ElectronegativityPauling);
 
-                SolidColorBrush solidColorBrush = new(Color.FromArgb((byte)AlphaForElectroNeg(elNeg), 220, 20, 60));
-
-                btn.Background = solidColorBrush;
 
                 if (elNeg == 0)
                 {
                     btn.Background = Brushes.MediumPurple;
+                }else
+
+                {
+                    SolidColorBrush solidColorBrush = new(Color.FromArgb((byte)AlphaForElectroNeg(elNeg), 220, 20, 60));
+
+                    btn.Background = solidColorBrush;
                 }
-                else;
 
 
 
@@ -46,8 +49,10 @@ namespace PeriyodikTablo
                 btn.HorizontalContentAlignment = HorizontalAlignment.Center;
                 btn.VerticalContentAlignment = VerticalAlignment.Center;
                 btn.Tag = i;
+                btn.Name = elements[i].Name;
 
                 btn.Click += MainWindow.ElBtnClick;
+
 
                 grid.Children.Add(btn);
 
@@ -61,14 +66,14 @@ namespace PeriyodikTablo
 
             for (int i = 0; i < elements.Count; i++)
             {
-                Button btn = new();
+                Button bton = new();
 
-                Grid.SetColumn(btn, elements[i].Xpos);
-                Grid.SetRow(btn, elements[i].Ypos);
+                Grid.SetColumn(bton, elements[i].Xpos);
+                Grid.SetRow(bton, elements[i].Ypos);
 
-                btn.Margin = new Thickness(0.5);
-                btn.BorderThickness = new Thickness(0);
-                btn.FontWeight = FontWeights.Bold;
+                bton.Margin = new Thickness(0.5);
+                bton.BorderThickness = new Thickness(0);
+                bton.FontWeight = FontWeights.Bold;
 
 
                 BrushConverter bc = new();
@@ -76,18 +81,18 @@ namespace PeriyodikTablo
                 decimal elNeg = ConvertWithFraction(elements[i].ElectronegativityPauling);
 
 
-                btn.Background = ColorForCategory(elements[i].Category);
+                bton.Background = ColorForCategory(elements[i].Category);
 
 
 
-                btn.Content = elements[i].Symbol;
-                btn.HorizontalContentAlignment = HorizontalAlignment.Center;
-                btn.VerticalContentAlignment = VerticalAlignment.Center;
-                btn.Tag = i;
+                bton.Content = elements[i].Symbol;
+                bton.HorizontalContentAlignment = HorizontalAlignment.Center;
+                bton.VerticalContentAlignment = VerticalAlignment.Center;
+                bton.Tag = i;
 
-                btn.Click += MainWindow.ElBtnClick;
+                bton.Click += MainWindow.ElBtnClick;
 
-                grid.Children.Add(btn);
+                grid.Children.Add(bton);
 
             }
         }
@@ -113,16 +118,16 @@ namespace PeriyodikTablo
 
             return category switch
             {
-                "actinide" => Brushes.Crimson,
-                "alkali metal" => Brushes.Green,
-                "alkaline earth metal" => Brushes.ForestGreen,
-                "diatomic nonmetal" => Brushes.MediumSeaGreen,
-                "lanthanide" => Brushes.Tomato,
-                "metalloid" => Brushes.Silver,
-                "noble gas" => Brushes.MediumPurple,
-                "polyatomic nonmetal" => Brushes.DarkOliveGreen,
-                "post-transition metal" => Brushes.DarkGray,
-                "transition metal" => Brushes.DarkSlateGray,
+                "Aktinit" => Brushes.Crimson,
+                "Alkali Metal" => Brushes.SandyBrown,
+                "Toprak Alkali Metal" => Brushes.SaddleBrown,
+                "Lantanit" => Brushes.Tomato,
+                "Yarı Metal" => Brushes.SeaGreen,
+                "Soygaz" => Brushes.MediumPurple,
+                "Ametal" => Brushes.DodgerBlue,
+                "Halojen" => Brushes.LimeGreen,
+                "Zayıf Metal" => Brushes.SlateGray,
+                "Geçiş Metali" => Brushes.DarkSlateGray,
                 _ => Brushes.Gray,
             };
             ;

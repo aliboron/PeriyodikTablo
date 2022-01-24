@@ -50,6 +50,6 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="0" Click="Button_Click" Content="EN" Margin="3" BorderThickness="0" Background="BurlyWood"/>
+        <Button Grid.Column="0" Grid.Row="0" Click="Button_Click" Content="Category" Margin="3" BorderThickness="0" Background="BurlyWood"/>
     </Grid>
 </Window>

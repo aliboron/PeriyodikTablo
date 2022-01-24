@@ -22,6 +22,8 @@ namespace PeriyodikTablo
     {
         Element cloneElement = new();
 
+        public Brush brush;
+
         public Periyodikgrafik()
         {
             InitializeComponent();
@@ -30,12 +32,10 @@ namespace PeriyodikTablo
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //------------------------------------------------------------//
-            //                  ANIMATION CODES                          //
+
+            TitleBorder.Background = brush;
 
             cloneElement = MainWindow.ElementList[MainWindow.sendInd];
-
-            Brush brush = PeriodicCreators.ColorForCategory(cloneElement.Category);
 
             elNumber.Foreground = brush;
             elNumber.Content = cloneElement.Number.ToString();
@@ -44,14 +44,14 @@ namespace PeriyodikTablo
             elName.Foreground = brush;
             elName.Content = cloneElement.Name.ToString();
 
-            elCategory.Content = cloneElement.Category.ToString();
-            elPhase.Content = cloneElement.Phase.ToString();
-            elAtomicMass.Content = cloneElement.AtomicMass.ToString();
-            elDensity.Content = cloneElement.Density.ToString();
-            elElectroNeg.Content = cloneElement.ElectronegativityPauling.ToString();
-            elElectroAff.Content = cloneElement.ElectronAffinity.ToString();
-            elFounder.Content = cloneElement.DiscoveredBy.ToString();
-            elElectroConfigSemantic.Content = cloneElement.ElectronConfigurationSemantic.ToString();
+            elCategory.Content += cloneElement.Category.ToString();
+            elPhase.Content += cloneElement.Phase.ToString();
+            elAtomicMass.Content += cloneElement.AtomicMass.ToString();
+            elDensity.Content += cloneElement.Density.ToString();
+            elElectroNeg.Content += cloneElement.ElectronegativityPauling.ToString();
+            elElectroAff.Content += cloneElement.ElectronAffinity.ToString();
+            elFounder.Content += cloneElement.DiscoveredBy.ToString();
+            elElectroConfigSemantic.Content += cloneElement.ElectronConfigurationSemantic.ToString();
 
 
             rectEl.Fill = brush;

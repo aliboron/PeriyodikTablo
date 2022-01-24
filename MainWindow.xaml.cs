@@ -7,9 +7,6 @@ using System.Globalization;
 using System.Windows;
 using System.IO;
 using CsvHelper;
-using Microsoft.Win32;
-using CsvHelper.Configuration.Attributes;
-using CsvHelper.Configuration;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -20,15 +17,11 @@ namespace PeriyodikTablo
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool isPropActive = false;
-
         public static int sendInd { get; set; }
-        int crMethodSwitch = 1;
+        int crMethodSwitch = 0;
 
         public static List<Element> ElementList;
-        List<Element> sortedByElectroNegativity;
-
-        decimal x;
+        List<Element> sortedByNumber;
 
 
         public MainWindow()
@@ -37,8 +30,7 @@ namespace PeriyodikTablo
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            Element ElementInfo = new();
-            
+
 
             using (var reader = new StreamReader(path + "dataDir\\data.csv"))
             using (var csv = new CsvReader(reader, new CultureInfo("en-GB")))
@@ -47,20 +39,32 @@ namespace PeriyodikTablo
                 ElementList = csv.GetRecords<Element>().ToList();
             }
 
-            /*sortedByElectroNegativity = ElementList.OrderBy(x => Double.Parse(x.ElectronegativityPauling)).ToList();
-            sortedByElectroNegativity.Reverse();*/
+            sortedByNumber = ElementList.OrderBy(x => Convert.ToByte(x.Number)).ToList();
 
-            PeriodicCreators.CreateByElectroNeg(ElementList, MainGrid);
+            //using (TextWriter writer = new StreamWriter(@"C:\test.csv", false, System.Text.Encoding.UTF8))
+            //{
+            //    var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
+            //    csv.Context.RegisterClassMap<ElementClassMap>();
+            //    csv.WriteRecords(sortedByNumber); // where values implements IEnumerable
+            //}
+
+
+
+            PeriodicCreators.CreateByCategory(ElementList, MainGrid);
 
         }
 
         public static void ElBtnClick(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
+            Button btn = sender as Button;
 
             Periyodikgrafik pg = new();
+            pg.brush = btn.Background;
             sendInd = int.Parse(btn.Tag.ToString());
             pg.ShowDialog();
+
+            
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -96,6 +100,7 @@ namespace PeriyodikTablo
                     break;
 
             }
+
         }
 
     }
