@@ -38,20 +38,20 @@ namespace PeriyodikTablo
             cloneElement = MainWindow.ElementList[MainWindow.sendInd];
 
             elNumber.Foreground = brush;
-            elNumber.Content = cloneElement.Number.ToString();
+            elNumber.Text = cloneElement.Number.ToString();
             elSymbol.Foreground = brush;
-            elSymbol.Content = cloneElement.Symbol.ToString();
+            elSymbol.Text = cloneElement.Symbol.ToString();
             elName.Foreground = brush;
-            elName.Content = cloneElement.Name.ToString();
+            elName.Text = cloneElement.Name.ToString();
 
-            elCategory.Content += cloneElement.Category.ToString();
-            elPhase.Content += cloneElement.Phase.ToString();
-            elAtomicMass.Content += cloneElement.AtomicMass.ToString();
-            elDensity.Content += cloneElement.Density.ToString();
-            elElectroNeg.Content += cloneElement.ElectronegativityPauling.ToString();
-            elElectroAff.Content += cloneElement.ElectronAffinity.ToString();
-            elFounder.Content += cloneElement.DiscoveredBy.ToString();
-            elElectroConfigSemantic.Content += cloneElement.ElectronConfigurationSemantic.ToString();
+            elCategory.Text += cloneElement.Category.ToString();
+            elPhase.Text += cloneElement.Phase.ToString();
+            elAtomicMass.Text += cloneElement.AtomicMass.ToString();
+            elDensity.Text += cloneElement.Density.ToString();
+            elElectroNeg.Text += cloneElement.ElectronegativityPauling.ToString();
+            elElectroAff.Text += cloneElement.ElectronAffinity.ToString();
+            elFounder.Text += cloneElement.DiscoveredBy.ToString();
+            elElectroConfigSemantic.Text += cloneElement.ElectronConfigurationSemantic.ToString();
 
 
             rectEl.Fill = brush;
@@ -71,29 +71,24 @@ namespace PeriyodikTablo
                 propGrid.Children.Add(borderBG2);
 
             }
-
+            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show();
 
-            Process.Start("explorer", cloneElement.Source);
-        }
-
-        private void Ellipse_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CloseButtonClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            MainWindow.mainWindow.BlackOverlay.Visibility = Visibility.Hidden;
             this.Close();
         }
 
-        private void Ellipse_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        private void CloseButtonMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Ellipse ellipse = (Ellipse)sender;
 
             ellipse.Opacity = 0.7;
         }
 
-        private void Ellipse_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void CloseButtonMouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Ellipse ellipse = (Ellipse)sender;
 

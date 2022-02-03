@@ -59,15 +59,5 @@ namespace PeriyodikTablo.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] BG {
-            get {
-                object obj = ResourceManager.GetObject("BG", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
     }
 }
