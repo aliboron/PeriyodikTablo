@@ -18,8 +18,6 @@ namespace PeriyodikTablo
         public int Period { get; set; }
         public string Phase { get; set; }
         public string Source { get; set; }
-        public string SpectralImg { get; set; }
-        public string Summary { get; set; }
         public string Symbol { get; set; }
         public int Xpos { get; set; }
         public int Ypos { get; set; }
@@ -50,8 +48,6 @@ namespace PeriyodikTablo
             Map(m => m.Period).Name("period");
             Map(m => m.Phase).Name("phase");
             Map(m => m.Source).Name("source");
-            Map(m => m.SpectralImg).Name("spectral_img");
-            Map(m => m.Summary).Name("summary");
             Map(m => m.Symbol).Name("symbol");
             Map(m => m.Xpos).Name("xpos");
             Map(m => m.Ypos).Name("ypos");
