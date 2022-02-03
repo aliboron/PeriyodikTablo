@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Drawing;
 using System.Windows.Media.Animation;
+using System.Net;
 
 namespace PeriyodikTablo
 {
@@ -66,14 +67,19 @@ namespace PeriyodikTablo
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //MainGrid.Children.Remove(PeriodicCreators.buttons[1]);
 
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
-
-            if (File.Exists(path + "dataDir\\data.csv"))
+            using (WebClient client = new WebClient())
             {
-                using (var reader = new StreamReader(path + "dataDir\\data.csv"))
+                client.DownloadFile(new Uri("https://cdn.jsdelivr.net/gh/Sorian01/PeriyodikTablo@master/dataDir/data.csv"), "data.csv");
+            }
+
+
+
+            if (File.Exists(path + "data.csv"))
+            {
+                using (var reader = new StreamReader(path + "data.csv"))
                 using (var csv = new CsvReader(reader, new CultureInfo("en-GB")))
                 {
                     csv.Context.RegisterClassMap<ElementClassMap>();
