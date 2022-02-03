@@ -1,55 +1,148 @@
-﻿<Window x:Class="PeriyodikTablo.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PeriyodikTablo"
+        xmlns:Custom="http://usercode.de/wpf.imageeffects" x:Class="PeriyodikTablo.MainWindow"
         mc:Ignorable="d"
-        Title="Periyodik Tablo" Height="800" Width="1280" MinHeight="800" MinWidth="1280" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+        Title="Periyodik Tablo" Height="784" Width="1280" MinHeight="784" MinWidth="1280" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Background="#FFD7F8FF">
 
-    <Window.Background>
-        <SolidColorBrush Color="AliceBlue"/>
-    </Window.Background>
-    
-    <Grid x:Name="MainGrid">
-        
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="0" Click="Button_Click" Content="Category" Margin="3" BorderThickness="0" Background="BurlyWood"/>
-    </Grid>
+
+    <Canvas x:Name="TableCanvas">
+
+        <Rectangle x:Name="BlackOverlay" Width="1280" Height="720" Fill="Black" Opacity="0.6" Visibility="Hidden" Panel.ZIndex="1"/>
+
+        <Image 
+            Height="50" Margin="5" MouseEnter="ResetImageMouseEnter" MouseLeave="ResetImageMouseLeave" MouseDown="ResetImageMouseClick">
+            <Image.Source>
+                <DrawingImage>
+                    <DrawingImage.Drawing>
+                        <DrawingGroup ClipGeometry="M3,3 V19 H19 V3 H3 Z">
+                            <DrawingGroup.Transform>
+                                <TranslateTransform X="-0.42599999904632568" Y="1049.36" />
+                            </DrawingGroup.Transform>
+                            <DrawingGroup Transform="1,0,0,-1,0,-1030.36">
+                                <GeometryDrawing>
+                                    <GeometryDrawing.Brush>
+                                        <SolidColorBrush Color="#26DC9B" Opacity="0.98" />
+                                    </GeometryDrawing.Brush>
+                                    <GeometryDrawing.Geometry>
+                                        <EllipseGeometry RadiusX="8" RadiusY="8" Center="11,-1041.36" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                            <DrawingGroup Transform="0.07192,0,0,0.07192,6.674,6.768">
+                                <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M16,16z M0,0z M120.6,38.723C117.288,31.01 112.834,24.356 107.24,18.762 101.645,13.168 94.992,8.712 87.278,5.401 79.565,2.087 71.473,0.431 63,0.431 55.016,0.431 47.29,1.937 39.82,4.952 32.352,7.962 25.71,12.217 19.9,17.703L9.30699999999999,7.192C7.67699999999999,5.508 5.80399999999999,5.128 3.68499999999999,6.051 1.51199999999999,6.975 0.425999999999992,8.578 0.425999999999992,10.859L0.425999999999992,47.359C0.425999999999992,48.771 0.941999999999992,49.993 1.97399999999999,51.025 3.00699999999999,52.057 4.22899999999999,52.573 5.64099999999999,52.573L42.141,52.573C44.423,52.573 46.025,51.487 46.948,49.314 47.871,47.196 47.491,45.322 45.807,43.692L34.645,32.449C38.448,28.864 42.793,26.108 47.685,24.179 52.574,22.251 57.679,21.286 63.002,21.286 68.651,21.286 74.042,22.387 79.172,24.586 84.305,26.786 88.744,29.76 92.492,33.508 96.24,37.255 99.214,41.695 101.414,46.828 103.613,51.961 104.713,57.351 104.713,62.998 104.713,68.648 103.613,74.038 101.414,79.168 99.214,84.301 96.24,88.741 92.492,92.489 88.744,96.237 84.304,99.211 79.172,101.41 74.039,103.61 68.647,104.71 63.002,104.71 56.538,104.71 50.428,103.298 44.67,100.474 38.913,97.65 34.052,93.658 30.087,88.497 29.707,87.954 29.087,87.627 28.213,87.518 27.398,87.518 26.719,87.762 26.176,88.251L15.014,99.495C14.58,99.931 14.349,100.486 14.322,101.165 14.295,101.845 14.472,102.455 14.852,102.998 20.773,110.168 27.942,115.722 36.361,119.659 44.78,123.596 53.661,125.566 63.003,125.566 71.476,125.566 79.569,123.909 87.282,120.596 94.995,117.283 101.647,112.828 107.243,107.235 112.837,101.639 117.293,94.987 120.604,87.274 123.917,79.561 125.573,71.467 125.573,62.995 125.573,54.521 123.916,46.431 120.603,38.718" />
+                            </DrawingGroup>
+                        </DrawingGroup>
+                    </DrawingImage.Drawing>
+                </DrawingImage>
+            </Image.Source>
+        </Image>
+
+        <Button Width="40" Height="40" Margin="268,64,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Content="Fe" FontSize="20" FontFamily="Roboto.ttf" Foreground="White" Background="DarkSlateGray" Click="SolidFilterToggle" BorderBrush="{x:Null}" />
+        <Button Width="40" Height="40" Margin="268,110,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Content="Hg" FontSize="20" FontFamily="Roboto.ttf" Foreground="White" Background="RoyalBlue" Click="LiquidFilterToggle" BorderBrush="{x:Null}" />
+        <Button Width="40" Height="40" Margin="268,156,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Content="G" FontSize="20" FontFamily="Roboto.ttf" Foreground="White" Background="OrangeRed" Click="GasFilterToggle" BorderBrush="{x:Null}" />
+        <Button Width="40" Height="40" Margin="268,202,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0" Content="?" FontSize="20" FontFamily="Roboto.ttf" Foreground="White" Background="Crimson" Click="NAFilterToggle" BorderBrush="{x:Null}" />
+
+        <TextBlock Text="Katılar" FontSize="20" FontFamily="Roboto.ttf" Margin="312,72,0,0" RenderTransformOrigin="0,0.5"/>
+        <TextBlock Text="Sıvılar" FontSize="20" FontFamily="Roboto.ttf" Margin="312,118,0,0" RenderTransformOrigin="0,0.5"/>
+        <TextBlock Text="Gazlar" FontSize="20" FontFamily="Roboto.ttf" Margin="312,164,0,0" RenderTransformOrigin="0,0.5"/>
+        <TextBlock Text="Belirsizler" FontSize="20" FontFamily="Roboto.ttf" Margin="312,210,0,0" RenderTransformOrigin="0,0.5"/>
+
+        <Button Content="Metaller " Width="208" Height="29" FontSize="15" FontFamily="Roboto.ttf" Foreground="White" Background="DarkSlateGray" Canvas.Left="505" Canvas.Top="54" BorderBrush="{x:Null}" Click="MetalsFilterToggle"/>
+        <Button Content="Ametaller" Width="69" Height="29" FontSize="14" FontFamily="Roboto.ttf" Foreground="White" Background="DodgerBlue" Canvas.Left="736" Canvas.Top="54" BorderBrush="{x:Null}" Click="NonMetalsFilterToggle"/>
+
+        <Button 
+            Content="Alkali Metaller" Width="115" Height="23" FontSize="15" FontFamily="Roboto.ttf" Foreground="White" Background="SandyBrown" Canvas.Left="528" Canvas.Top="89" BorderBrush="{x:Null}" Click="AlkaliMetalsFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button 
+            Content="T. Alkali Metaller" Width="115" Height="23" FontSize="14" FontFamily="Roboto.ttf" Foreground="White" Background="SaddleBrown" Canvas.Left="551" Canvas.Top="89" BorderBrush="{x:Null}" Click="EarthAlkaliMetalsFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Geçiş Metalleri" Width="139" Height="69" FontSize="18" FontFamily="Roboto.ttf" Foreground="White" Background="DarkSlateGray" Canvas.Left="551" Canvas.Top="135" BorderBrush="{x:Null}" Click="TransitionMetalsFilterToggle" />
+        <Button Content="Lantanitler" Width="139" Height="23" FontSize="18" FontFamily="Roboto.ttf" Foreground="White" Background="Tomato" Canvas.Left="551" Canvas.Top="204" BorderBrush="{x:Null}" Click="LanthanidesFilterToggle" />
+        <Button Content="Aktinitler" Width="139" Height="23" FontSize="18" FontFamily="Roboto.ttf" Foreground="White" Background="Crimson" Canvas.Left="551" Canvas.Top="227" BorderBrush="{x:Null}" Click="ActinidesFilterToggle"/>
+        <Button 
+            Content="Zayıf  Metaller" Width="115" Height="23" FontSize="15" FontFamily="Roboto.ttf" Foreground="White" Background="SteelBlue" Canvas.Left="713" Canvas.Top="89" BorderBrush="{x:Null}" Click="PostTransMetalsFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button 
+            Content="Yarı  Metaller" Width="115" Height="23" FontSize="15" FontFamily="Roboto.ttf" Foreground="White" Background="SeaGreen" Canvas.Left="736" Canvas.Top="89" BorderBrush="{x:Null}" Click="MetalloidsFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button 
+            Content="Diğer Ametaller" Width="115" Height="23" FontSize="14" FontFamily="Roboto.ttf" Foreground="White" Background="DodgerBlue" Canvas.Left="759" Canvas.Top="89" BorderBrush="{x:Null}" Click="OtherNonMetalsFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button 
+            Content="Halojenler" Width="115" Height="23" FontSize="15" FontFamily="Roboto.ttf" Foreground="White" Background="LimeGreen" Canvas.Left="782" Canvas.Top="89" BorderBrush="{x:Null}" Click="HalogensFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button 
+            Content="Soygazlar" Width="115" Height="23" FontSize="15" FontFamily="Roboto.ttf" Foreground="White" Background="MediumPurple" Canvas.Left="805" Canvas.Top="89" BorderBrush="{x:Null}" Click="NobleGasesFilterToggle" >
+            <Button.RenderTransform>
+                <RotateTransform Angle="90" CenterX="0" CenterY="0"/>
+            </Button.RenderTransform>
+        </Button>
+
+        <Button Content="?" Width="23" Height="46" FontSize="18" FontFamily="Roboto.ttf" Foreground="White" Background="Gray" Canvas.Left="701.5" Canvas.Top="204" BorderBrush="{x:Null}" Click="NonCategorizedFilterToggle"/>
+
+        <Grid x:Name="MainGrid" Height="768" Width="1280" ShowGridLines="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+
+    </Canvas>
+
 </Window>

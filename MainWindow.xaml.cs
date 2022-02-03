@@ -9,6 +9,8 @@ using System.IO;
 using CsvHelper;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Drawing;
+using System.Windows.Media.Animation;
 
 namespace PeriyodikTablo
 {
@@ -18,29 +20,26 @@ namespace PeriyodikTablo
     public partial class MainWindow : Window
     {
         public static int sendInd { get; set; }
-        int crMethodSwitch = 0;
+
+        public static MainWindow mainWindow;
 
         public static List<Element> ElementList;
-        List<Element> sortedByNumber;
+
+        PeriodicCreators Creators = new();
+
 
 
         public MainWindow()
         {
             InitializeComponent();
 
-            string path = AppDomain.CurrentDomain.BaseDirectory;
+            mainWindow = this;
 
+            
 
-
-            using (var reader = new StreamReader(path + "dataDir\\data.csv"))
-            using (var csv = new CsvReader(reader, new CultureInfo("en-GB")))
-            {
-                csv.Context.RegisterClassMap<ElementClassMap>();
-                ElementList = csv.GetRecords<Element>().ToList();
-            }
-
-            sortedByNumber = ElementList.OrderBy(x => Convert.ToByte(x.Number)).ToList();
-
+            // Verileri csv dosyasına yazmak için
+            //
+            //List<Element> sortedByNumber = ElementList.OrderBy(x => Convert.ToByte(x.Number)).ToList();
             //using (TextWriter writer = new StreamWriter(@"C:\test.csv", false, System.Text.Encoding.UTF8))
             //{
             //    var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
@@ -48,21 +47,19 @@ namespace PeriyodikTablo
             //    csv.WriteRecords(sortedByNumber); // where values implements IEnumerable
             //}
 
-
-
-            PeriodicCreators.CreateByCategory(ElementList, MainGrid);
-
         }
 
         public static void ElBtnClick(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
 
+            mainWindow.BlackOverlay.Visibility = Visibility.Visible;
+
             Periyodikgrafik pg = new();
             pg.brush = btn.Background;
             sendInd = int.Parse(btn.Tag.ToString());
+            
             pg.ShowDialog();
-
             
 
         }
@@ -70,39 +67,158 @@ namespace PeriyodikTablo
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //MainGrid.Children.Remove(PeriodicCreators.buttons[1]);
-        }
 
-        public void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MainGrid.Children.Clear();
+            string path = AppDomain.CurrentDomain.BaseDirectory;
 
-            Button button = new();
-            button.Click += Button_Click;
-            Grid.SetColumn(button, 0);
-            Grid.SetRow(button, 0);
-            button.Background = Brushes.BurlyWood;
-            button.Margin = new Thickness(3);
-            button.BorderThickness = new Thickness(0);
 
-            MainGrid.Children.Add(button);
-
-            switch (crMethodSwitch)
+            if (File.Exists(path + "dataDir\\data.csv"))
             {
-                case 0:
-                    PeriodicCreators.CreateByElectroNeg(ElementList, MainGrid);
-                    crMethodSwitch = 1;
-                    button.Content = "EN";
-                    break;
-                case 1:
-                    PeriodicCreators.CreateByCategory(ElementList, MainGrid);
-                    crMethodSwitch = 0;
-                    button.Content = "Category";
-                    break;
-
+                using (var reader = new StreamReader(path + "dataDir\\data.csv"))
+                using (var csv = new CsvReader(reader, new CultureInfo("en-GB")))
+                {
+                    csv.Context.RegisterClassMap<ElementClassMap>();
+                    ElementList = csv.GetRecords<Element>().ToList();
+                }
+                Creators.CreateByCategoryOnStart(ElementList, MainGrid);
+            }
+            else
+            {
+                MessageBox.Show("Veri dosyası yok veya geçerli değil.", "UYARI", MessageBoxButton.OK, MessageBoxImage.Warning);
+                this.Close();
             }
 
         }
 
+        public void SolidFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterSolid(ElementList, MainGrid);
+
+        }
+
+        public void LiquidFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterLiquid(ElementList, MainGrid);
+
+        }
+
+        public void GasFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterGas(ElementList, MainGrid);
+
+        }
+
+        public void NAFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterNA(ElementList, MainGrid);
+
+        }
+
+        public void MetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterMetals(ElementList, MainGrid);
+
+        }
+
+        public void NonMetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterNonMetals(ElementList, MainGrid);
+
+        }
+
+        public void AlkaliMetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterAlkaliMetals(ElementList, MainGrid);
+
+        }
+        public void EarthAlkaliMetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterEarthAlkaliMetals(ElementList, MainGrid);
+
+        }
+        public void TransitionMetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterTransMetal(ElementList, MainGrid);
+
+        }
+        public void PostTransMetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterPostTransMetal(ElementList, MainGrid);
+
+        }
+        public void ActinidesFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterActinides(ElementList, MainGrid);
+
+        }
+        public void LanthanidesFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterLanthanides(ElementList, MainGrid);
+
+        }
+
+        public void MetalloidsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterMetalloids(ElementList, MainGrid);
+
+        }
+        public void OtherNonMetalsFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterOtherNonMetals(ElementList, MainGrid);
+
+        }
+        public void HalogensFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterHalogens(ElementList, MainGrid);
+
+        }
+        public void NobleGasesFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterNobleGases(ElementList, MainGrid);
+
+        }
+
+        public void NonCategorizedFilterToggle(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByFilterNonCategorized(ElementList, MainGrid);
+
+        }
+
+
+        private void ResetImageMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Image img = sender as Image;
+
+            img.Opacity = 0.7;
+        }
+        private void ResetImageMouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Image img = sender as Image;
+
+            img.Opacity = 1;
+        }
+
+        private void ResetImageMouseClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainGrid.Children.Clear();
+            Creators.CreateByCategory(ElementList, MainGrid);
+        }
     }
 
 }

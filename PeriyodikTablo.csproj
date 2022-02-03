@@ -21,7 +21,8 @@
 
   <ItemGroup>
     <None Remove="Fonts\Roboto.ttf" />
-    <None Remove="Resources\BG.jpg" />
+    <None Remove="Resources\BG.png" />
+    <None Remove="Resources\reset.png" />
     <None Remove="Resources\wiki.png" />
     <None Remove="Resources\wiki.svg" />
     <None Include="Resources\icon.png">
@@ -36,7 +37,8 @@
 
   <ItemGroup>
     <Resource Include="Fonts\Roboto.ttf" />
-    <Resource Include="Resources\BG.jpg" />
+    <Resource Include="Resources\BG.png" />
+    <Resource Include="Resources\reset.png" />
     <Resource Include="Resources\wiki.png" />
   </ItemGroup>
 
