@@ -67,7 +67,7 @@ namespace PeriyodikTablo
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            PeriodicCreators.style = TryFindResource("ButtonStyle") as Style;
             string path = AppDomain.CurrentDomain.BaseDirectory;
 
             using (WebClient client = new WebClient())

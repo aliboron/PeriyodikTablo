@@ -22,6 +22,7 @@ namespace PeriyodikTablo
     {
         Element cloneElement = new();
 
+
         public Brush brush;
 
         public Periyodikgrafik()

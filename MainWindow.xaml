@@ -8,9 +8,29 @@
         mc:Ignorable="d"
         Title="Periyodik Tablo" Height="784" Width="1280" MinHeight="784" MinWidth="1280" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Background="#FFD7F8FF">
 
+    <Window.Resources>
+        
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Ellipse Fill="Blue"
+                             Stroke="Yellow"/>
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+    </Window.Resources>
 
 
     <Canvas x:Name="TableCanvas">
+
+
 
         <Rectangle x:Name="BlackOverlay" Width="1280" Height="720" Fill="Black" Opacity="0.6" Visibility="Hidden" Panel.ZIndex="1"/>
 

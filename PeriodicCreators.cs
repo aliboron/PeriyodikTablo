@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -17,7 +15,7 @@ namespace PeriyodikTablo
         DoubleAnimation widthAnimation = new(40, 63.5, TimeSpan.FromSeconds(0.3));
 
         SolidColorBrush[] lastElementColor = new SolidColorBrush[118];
-
+        public static Style style;
         //------------------Diğer------------------//
 
         public void CreateByElectroNeg(List<Element> elements, Grid grid)
@@ -637,6 +635,8 @@ namespace PeriyodikTablo
 
             Grid.SetColumn(btn, elements[index].Xpos);
             Grid.SetRow(btn, elements[index].Ypos);
+
+            //btn.Style = style;
 
             btn.Margin = new Thickness(0.5);
             btn.BorderThickness = new Thickness(0);
